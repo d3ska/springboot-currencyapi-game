@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Game</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "Open Sans",Serif;
+        }
+
+
+        h2{
+            margin-bottom: 10px;
+        }
+        body {
+            background-image: url("https://images2.alphacoders.com/218/218110.jpg");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .box{
+            background:rgba(145, 122, 34, .8);
+            padding: 10px;
+            border-radius: 5%;
+            width: 25vw;
+            height: 25vh;
+            border-color: #514a4a;
+            text-align: center;
+        }
+
+        .button1,
+        .button2{
+            box-shadow: 0px 1px 0px 0px #fff6af;
+            background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+            background-color:#ffec64;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#333333;
+            font-family:Arial;
+            font-size:15px;
+            width:50%;
+            justify-content: center;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffee66;
+            position: relative;
+            align-items: center;
+            float:left;
+            margin-top: 20px;
+        }
+        .button1:hover,
+        .button2:hover{
+            background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+            background-color:#ffab23;
+        }
+        .button1:active,
+        .button2:active{
+            position:relative;
+            top:1px;
+        }
+
+        .userInput{
+            width: 75%;
+            margin-top: 15px;
+            padding: 5px;
+        }
+
+        .hint{
+            margin: -5px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <div class="box">
+            <div class="currency-info">
+                <p th:text="${rateDate}"></p>
+                <h1>Guess Currency Rate</h1>
+                <h2 th:text="${description}"></h2>
+                <p class="hint" th:text="${hint}"></p>
+            </div>
+            <div class="forms">
+             <form method="post" th:action="@{/check}" th:object="${userGuess}">
+                <input  class="userInput" type="text" value="currency value" required th:field="*{rate}">
+                 <input class="button1" type="submit" value="Check">
+                </form>
+                <form method="post" th:action="@{/reset}">
+                    <input class="button2" type="submit" value="Reset">
+                </form>
+            </div>
+         </div>
+    </div>
+</body>
+</html>

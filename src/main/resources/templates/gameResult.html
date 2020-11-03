@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Game</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "Open Sans",Serif;
+        }
+
+
+        body {
+            background-image: url("https://images2.alphacoders.com/218/218110.jpg");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .box{
+            background:rgba(145, 122, 34, .8);
+            padding: 10px;
+            border-radius: 5%;
+            width: 25vw;
+            height: 25vh;
+            border-color: #514a4a;
+            text-align: center;
+            justify-content: center;
+            position: absolute;
+            bot:50%;
+        }
+
+        .button{
+            box-shadow: 0px 1px 0px 0px #fff6af;
+            background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+            background-color:#ffec64;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#333333;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffee66;
+            margin-top: 30px;
+        }
+        .button:hover {
+            background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+            background-color:#ffab23;
+        }
+        .button:active {
+            position:relative;
+            top:1px;
+        }
+
+    h1{
+        margin: 20px 0;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <form method="post" th:action="@{/reset}">
+            <h1 th:text="${message}"></h1>
+            <p th:text="${info}"></p>
+            <input class="button" type="submit" th:value="${buttonValue}" >
+        </form>
+    </div>
+</body>
+</html>
