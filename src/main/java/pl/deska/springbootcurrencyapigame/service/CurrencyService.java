@@ -3,7 +3,6 @@ package pl.deska.springbootcurrencyapigame.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
 import pl.deska.springbootcurrencyapigame.model.Currency;
 import pl.deska.springbootcurrencyapigame.parser.CurrencyParser;
 

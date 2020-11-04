@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.deska.springbootcurrencyapigame.model.CurrenciesData;
 import pl.deska.springbootcurrencyapigame.model.Currency;
+import pl.deska.springbootcurrencyapigame.model.Rates;
 import pl.deska.springbootcurrencyapigame.model.TypeCurrency;
 import pl.deska.springbootcurrencyapigame.reader.DataReader;
 
@@ -23,10 +24,10 @@ public class CurrencyParser {
         this.dataReader = dataReader;
         this.currenciesData = (CurrenciesData)dataReader.getData().getBody();
         this.currencies = new HashMap<>();
+        parseCurrenciesToMap(currencies, currenciesData);
     }
 
     public Currency getRandomCurrency(){
-        parseCurrenciesToMap(currencies, currenciesData);
         String randomCurrencyName = getRandomCurrencyName();
         Double rate  = changeDecimalPlace(currencies.get(randomCurrencyName));
         Currency currency = new Currency(randomCurrencyName, rate, currenciesData.getBase(), currenciesData.getDate());
@@ -50,41 +51,42 @@ public class CurrencyParser {
         }else if(price < 10){
            result =  result.substring(0, 4);
         }
-        return Double.valueOf(result);
+        return Double.parseDouble(result);
     }
 
     private void parseCurrenciesToMap(Map<String, Double> currencies, CurrenciesData body) {
-        currencies.put("AUD", body.getRates().getAUD());
-        currencies.put("BGN", body.getRates().getBGN());
-        currencies.put("BRL", body.getRates().getBRL());
-        currencies.put("CAD", body.getRates().getCAD());
-        currencies.put("CHF", body.getRates().getCHF());
-        currencies.put("CNY", body.getRates().getCNY());
-        currencies.put("DKK", body.getRates().getDKK());
-        currencies.put("CZK", body.getRates().getCZK());
-        currencies.put("GBP", body.getRates().getGBP());
-        currencies.put("HKD", body.getRates().getHKD());
-        currencies.put("HRK", body.getRates().getHRK());
-        currencies.put("HUF", body.getRates().getHUF());
-        currencies.put("IDR", body.getRates().getIDR());
-        currencies.put("ILS", body.getRates().getILS());
-        currencies.put("INR", body.getRates().getINR());
-        currencies.put("ISK", body.getRates().getISK());
-        currencies.put("JPY", body.getRates().getJPY());
-        currencies.put("KRW", body.getRates().getKRW());
-        currencies.put("MXN", body.getRates().getMXN());
-        currencies.put("MYR", body.getRates().getMYR());
-        currencies.put("NOK", body.getRates().getNOK());
-        currencies.put("NZD", body.getRates().getNZD());
-        currencies.put("PHP", body.getRates().getPHP());
-        currencies.put("PLN", body.getRates().getPLN());
-        currencies.put("RON", body.getRates().getRON());
-        currencies.put("RUB", body.getRates().getRUB());
-        currencies.put("SEK", body.getRates().getSEK());
-        currencies.put("SGD", body.getRates().getSGD());
-        currencies.put("THB", body.getRates().getTHB());
-        currencies.put("TRY", body.getRates().getTRY());
-        currencies.put("USD", body.getRates().getUSD());
-        currencies.put("ZAR", body.getRates().getZAR());
+        Rates rates = body.getRates();
+        currencies.put("AUD",rates.getAUD());
+        currencies.put("BGN", rates.getBGN());
+        currencies.put("BRL", rates.getBRL());
+        currencies.put("CAD", rates.getCAD());
+        currencies.put("CHF", rates.getCHF());
+        currencies.put("CNY", rates.getCNY());
+        currencies.put("DKK", rates.getDKK());
+        currencies.put("CZK", rates.getCZK());
+        currencies.put("GBP", rates.getGBP());
+        currencies.put("HKD", rates.getHKD());
+        currencies.put("HRK", rates.getHRK());
+        currencies.put("HUF", rates.getHUF());
+        currencies.put("IDR", rates.getIDR());
+        currencies.put("ILS", rates.getILS());
+        currencies.put("INR", rates.getINR());
+        currencies.put("ISK", rates.getISK());
+        currencies.put("JPY", rates.getJPY());
+        currencies.put("KRW", rates.getKRW());
+        currencies.put("MXN", rates.getMXN());
+        currencies.put("MYR", rates.getMYR());
+        currencies.put("NOK", rates.getNOK());
+        currencies.put("NZD", rates.getNZD());
+        currencies.put("PHP", rates.getPHP());
+        currencies.put("PLN", rates.getPLN());
+        currencies.put("RON", rates.getRON());
+        currencies.put("RUB", rates.getRUB());
+        currencies.put("SEK", rates.getSEK());
+        currencies.put("SGD", rates.getSGD());
+        currencies.put("THB", rates.getTHB());
+        currencies.put("TRY", rates.getTRY());
+        currencies.put("USD", rates.getUSD());
+        currencies.put("ZAR", rates.getZAR());
     }
 }
