@@ -23,9 +23,6 @@ public class CurrencyController {
     public String playGame(Model model){
         Currency currency = currencyService.getCurrency();
         model.addAttribute("userGuess", new Currency());
-        model.addAttribute("randomCurrency", currency.getName());
-        model.addAttribute("randomCurrencyRate", currency.getRate());
-        model.addAttribute("currencyBase", currency.getBase());
         model.addAttribute("rateDate", currency.getDate());
         model.addAttribute("hint", currencyService.getHint());
         model.addAttribute("description",  currency.getName() + " relative to " + currency.getBase());

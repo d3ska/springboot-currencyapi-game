@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import pl.deska.springbootcurrencyapigame.model.Currency;
-import pl.deska.springbootcurrencyapigame.parser.CurrencyParser;
+import pl.deska.springbootcurrencyapigame.parser.DataParser;
 
 @Service
 @Scope(scopeName = "prototype")
@@ -12,11 +12,11 @@ public class CurrencyService {
 
     private String hint = "";
     private Currency currency;
-    private CurrencyParser currencyParser;
+    private DataParser dataParser;
 
     @Autowired
-    public CurrencyService(CurrencyParser currencyParser) {
-        this.currencyParser = currencyParser;
+    public CurrencyService(DataParser currencyParser) {
+        this.dataParser = currencyParser;
         this.currency = currencyParser.getRandomCurrency();
     }
 
@@ -31,7 +31,7 @@ public class CurrencyService {
 
 
     public void resetGame() {
-        this.currency = currencyParser.getRandomCurrency();
+        this.currency = dataParser.getRandomCurrency();
         this.hint = "";
     }
 

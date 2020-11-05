@@ -11,7 +11,7 @@ import pl.deska.springbootcurrencyapigame.reader.DataReader;
 import java.util.*;
 
 @Service
-public class CurrencyParser {
+public class CurrencyParser implements DataParser{
 
     private Random random;
     private DataReader dataReader;
@@ -27,6 +27,7 @@ public class CurrencyParser {
         parseCurrenciesToMap(currencies, currenciesData);
     }
 
+    @Override
     public Currency getRandomCurrency(){
         String randomCurrencyName = getRandomCurrencyName();
         Double rate  = changeDecimalPlace(currencies.get(randomCurrencyName));
